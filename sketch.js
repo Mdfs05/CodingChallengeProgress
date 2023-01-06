@@ -34,14 +34,21 @@ function changeFOV() {
 }
 
 function draw() {
-  if (keyIsDown(RIGHT_ARROW)) {
-    particle.rotate(0.05);
-  } if (keyIsDown(LEFT_ARROW)) {
-    particle.rotate(-0.05);
-  } if (keyIsDown(UP_ARROW)) {
-    particle.move(1);
+  let brightnessFactor = 245;
+  
+  if (keyIsDown(UP_ARROW)) {
+    particle.move(1, 0);
   } if (keyIsDown(DOWN_ARROW)) {
-    particle.move(-1);
+    particle.move(-1, 0);
+  }  if (keyIsDown(LEFT_ARROW)) {
+    particle.rotate(-0.05);
+  } if (keyIsDown(RIGHT_ARROW)) {
+    particle.rotate(0.05);
+  }  
+  
+  //Flashlight
+  if (keyIsDown(70)) {
+    brightnessFactor = 0;
   }
   
   background(0);
@@ -63,13 +70,15 @@ function draw() {
   const w = sceneW / scene.length;
   push();
   translate(sceneW, 0);
+  let colour = [255, 10, 244];
   for(let i = 0; i < scene.length; i++) {
     noStroke();
     const sq = scene[i]*scene[i];
     const wSq = sceneW * sceneW;
     const b = map(sq, 0, wSq, 255, 0);
     const h = map(scene[i], 0, sceneW, sceneH, 0);
-    fill(b);
+    //(b-brightnessFactor), (b-brightnessFactor), (b-brightnessFactor)
+    fill((b-brightnessFactor));
     rectMode(CENTER);
     rect((i* (w + w))/2, sceneH/2, w+1, h);
     //17:15
