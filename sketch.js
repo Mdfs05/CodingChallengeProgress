@@ -36,11 +36,15 @@ function changeFOV() {
 function draw() {
   let brightnessFactor = 245;
   
-  if (keyIsDown(UP_ARROW)) {
+  if (keyIsDown(87)) {
     particle.move(1, 0);
-  } if (keyIsDown(DOWN_ARROW)) {
+  } if (keyIsDown(83)) {
     particle.move(-1, 0);
-  }  if (keyIsDown(LEFT_ARROW)) {
+  }  if (keyIsDown(65)) {
+    particle.move(0, -1);
+  } if (keyIsDown(68)) {
+    particle.move(0, 1);
+  } if (keyIsDown(LEFT_ARROW)) {
     particle.rotate(-0.05);
   } if (keyIsDown(RIGHT_ARROW)) {
     particle.rotate(0.05);
