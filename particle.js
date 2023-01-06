@@ -34,6 +34,21 @@ class Particle {
     velStrafe.setMag(strafe);
     this.pos.add(vel);
     this.pos.add(velStrafe);
+    if (this.wallCollision() === true) {
+      this.pos.sub(vel);
+      this.pos.sub(velStrafe);
+    }
+  }
+  
+  wallCollision() {
+    let collide;
+    for(let wall of walls) {
+      collide = collideLineCircle(wall.a.x, wall.a.y, wall.b.x, wall.b.y, this.pos.x, this.pos.y, 16);
+      if (collide === true) {
+        return true;
+      }
+    }
+    return false;
   }
   
   update(x,y) {
