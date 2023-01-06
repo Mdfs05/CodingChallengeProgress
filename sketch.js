@@ -33,8 +33,13 @@ function changeFOV() {
   particle.updateFOV(fov);
 }
 
+function mousePressed() {
+  requestPointerLock();
+}
+
 function draw() {
   let brightnessFactor = 245;
+  particle.rotate(movedX*0.01);
   
   if (keyIsDown(87)) {
     particle.move(1, 0);
@@ -44,11 +49,7 @@ function draw() {
     particle.move(0, -1);
   } if (keyIsDown(68)) {
     particle.move(0, 1);
-  } if (keyIsDown(LEFT_ARROW)) {
-    particle.rotate(-0.05);
-  } if (keyIsDown(RIGHT_ARROW)) {
-    particle.rotate(0.05);
-  }  
+  } 
   
   //Flashlight
   if (keyIsDown(70)) {
