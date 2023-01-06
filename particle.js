@@ -27,10 +27,13 @@ class Particle {
     }
   }
   
-  move(amt) {
+  move(amt, strafe) {
     const vel = p5.Vector.fromAngle(this.heading);
     vel.setMag(amt);
+    const velStrafe = p5.Vector.fromAngle(this.heading + radians(90));
+    velStrafe.setMag(strafe);
     this.pos.add(vel);
+    this.pos.add(velStrafe);
   }
   
   update(x,y) {
@@ -75,6 +78,5 @@ class Particle {
     for (let ray of this.rays) {
       ray.show();
     }
-    //23:16
   }
 }
